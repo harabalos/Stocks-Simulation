@@ -25,6 +25,8 @@ public class Main {
         switch (accountChoice()) {
             case "a": account = new Personal(INITIAL_DEPOSIT); break;
             case "b": account = new TFSA(INITIAL_DEPOSIT); break;
+            case "A": account = new Personal(INITIAL_DEPOSIT); break;
+            case "B": account = new TFSA(INITIAL_DEPOSIT); break;
         }
 
         initialBalance();
@@ -69,7 +71,7 @@ public class Main {
     public static String accountChoice() {
         System.out.print("\n  Respectively, type 'a' or 'b' to create a Personal account or TFSA: ");
         String choice = scanner.nextLine();
-        while (!choice.equals("a") && !choice.equals("b")) {
+        while (!choice.equalsIgnoreCase("a") && !choice.equalsIgnoreCase("b")) {
             System.out.print("  Respectively, type 'a' or 'b' to create a Personal account or TFSA: ");
             choice = scanner.nextLine();
         }
