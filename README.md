@@ -32,7 +32,6 @@ java Main
 
 
 Usage
-
 --------
 The simulation starts with a default amount of cash and allows you to buy and sell stocks in real-time, you can track your portfolio and see how your decisions affect your performance.
 
