@@ -1,34 +1,57 @@
-# Stock-Trading-Simulation 
---------------------------- 
-A program that you can trade your stocks! 
+Stock Trading Simulation
+-------------------------
+Welcome to the Stock Trading Simulation repository! This project is a simulation of a stock trading platform made in Java. It allows users to trade stocks and track their portfolio in a realistic and interactive environment.
 
-                              PERSONAL ACCOUNT
+Features
+-------------------------
+Buy and sell stocks
+Track portfolio and performance
+Historical stock data
 
-A personal account has a portfolio and funds available.
-The investor's portfolio tracks how many shares they own of each stock.
-Buy trades made from a personal account are free.
-Sell trades made in a personal account are immediately charged a 5% fee.
+Getting Started
+-------------------------
+To run the simulation, you will need to have Java installed on your machine.
 
-                              TFSA ACCOUNT
+1.  Clone the repository to your local machine
 
-A TFSA has a portfolio and funds available.
-The investor's portfolio tracks how many shares they own of each stock.
-Every trade (buy/sell) made from a TFSA is charged a 1% fee.
+```
+git clone https://github.com/harabalos/Stocks-Simulation
+```
 
-                              TRADE
+2. Compile your source code
 
-A trade can be: MARKET_BUY or MARKET_SELL.
-A trade is identified by the:
-  - stock (AAPL, FB, GOOG, TSLA).
-  - type of trade ( MARKET_BUY, MARKET_SELL ).
-  - the amount of shares being purchased/sold.
-  - the price of the stock at that day.
+```
+javac Main.java
+```
+
+3. Run the simulation
+
+```
+java Main
+```
 
 
------------------------ 
+Usage
 
-This is a challenge from "The Complete Java Development Bootcamp" course in Udemy Its purpose is to write high quality java code.
+--------
+The simulation starts with a default amount of cash and allows you to buy and sell stocks in real-time, you can track your portfolio and see how your decisions affect your performance.
 
-SCRENSHOT 
----------------------- 
-![README_image](https://user-images.githubusercontent.com/92236091/198684382-2ff3f220-fc18-4fa3-865b-c1c35d9a2d69.jpg)
+Future updates
+--------------
+- Real-time stock prices
+- Implementing more technical indicators
+- Implementing stop loss and take profit orders
+- Adding more stocks
+
+Contributing
+--------------------
+We welcome contributions to the project. If you are interested in contributing, please follow these guidelines:
+
+- Fork the repository
+- Create a new branch for your changes
+- Make your changes and write clear and concise commit messages
+- Submit a pull request for review
+
+
+Enjoy trading!
+
