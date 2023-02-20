@@ -59,3 +59,8 @@ This is a challenge from "The Complete Java Development Bootcamp" course in Udem
 SCREENSHOT 
 ---------------------- 
 ![README_image](https://user-images.githubusercontent.com/92236091/198684382-2ff3f220-fc18-4fa3-865b-c1c35d9a2d69.jpg)
+
+
+Licence
+---------------
+This project is licensed under the terms of the [MIT](LICENCE.txt) License.
