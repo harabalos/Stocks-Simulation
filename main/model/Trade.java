@@ -2,7 +2,7 @@ package main.model;
 
 public class Trade {
 
-    public enum Stock { AAPL, FB, GOOG, TSLA }
+    public enum Stock { aapl, fb, goog, tsla }
     public enum Type { MARKET_BUY, MARKET_SELL }
     
     private Stock stock;

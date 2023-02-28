@@ -3,8 +3,9 @@ package main;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.Paths; 
 import java.util.Scanner;
+
 
 import main.model.Trade;
 import main.model.Trade.Stock;
@@ -104,7 +105,7 @@ public class Main {
 
     public static String buyOrSell() {
         System.out.print("\n\n  Would you like to 'buy' or 'sell': ");
-        String choice = scanner.nextLine();
+        String choice = scanner.nextLine().toLowerCase();
         while (!choice.equals("buy") && !choice.equals("sell")) {
             System.out.print("  Would you like to 'buy' or 'sell': ");
             choice = scanner.nextLine();
@@ -114,8 +115,8 @@ public class Main {
 
     public static String chooseStock() {
         System.out.print("  Choose a stock: ");
-        String stock = scanner.nextLine(); 
-        while (!stock.equals("AAPL") && !stock.equals("FB") && !stock.equals("GOOG") && !stock.equals("TSLA") ) {
+        String stock = scanner.nextLine().toLowerCase(); 
+        while (!stock.equals("aapl") && !stock.equals("fb") && !stock.equals("goog") && !stock.equals("tsla") ) {
             System.out.print("  Choose a stock: ");
             stock = scanner.nextLine();
         }
@@ -138,10 +139,10 @@ public class Main {
     public static void displayPrices(int day) {
         System.out.println("\n\n\t  DAY " + day + " PRICES\n");
 
-        System.out.println("  " + Color.BLUE + Stock.AAPL + "\t\t" + Color.GREEN + getPrice(Stock.AAPL, day));
-        System.out.println("  " + Color.BLUE + Stock.FB + "\t\t" + Color.GREEN + getPrice(Stock.FB, day));
-        System.out.println("  " + Color.BLUE + Stock.GOOG + "\t\t" + Color.GREEN + getPrice(Stock.GOOG, day));
-        System.out.println("  " + Color.BLUE + Stock.TSLA + "\t\t" + Color.GREEN + getPrice(Stock.TSLA, day) + Color.RESET);
+        System.out.println("  " + Color.BLUE + "AAPL\t\t" + Color.GREEN + getPrice(Stock.aapl, day));
+        System.out.println("  " + Color.BLUE + "FB\t\t" + Color.GREEN + getPrice(Stock.fb, day));
+        System.out.println("  " + Color.BLUE + "GOOG\t\t" + Color.GREEN + getPrice(Stock.goog, day));
+        System.out.println("  " + Color.BLUE + "TSLA\t\t" + Color.GREEN + getPrice(Stock.tsla, day) + Color.RESET);
 
     }
 
