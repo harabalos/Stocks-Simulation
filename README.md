@@ -2,11 +2,14 @@ Stock Trading Simulation
 -------------------------
 Welcome to the Stock Trading Simulation repository! This project is a simulation of a stock trading platform made in Java. It allows users to trade stocks and track their portfolio in a realistic and interactive environment.
 
+In the latest update, we have added the ability to fetch real-time stock prices using the Alpha Vantage ***RESTful API***.
+
+
 Features
 -------------------------
-Buy and sell stocks
-Track portfolio and performance
-Historical stock data
+- Buy and sell stocks
+- Track portfolio and performance
+- Real-Time stock data powered by the Alpha Vantage API
 
 Getting Started
 -------------------------
@@ -18,17 +21,18 @@ To run the simulation, you will need to have Java installed on your machine.
 git clone https://github.com/harabalos/Stocks-Simulation
 ```
 
-2. Compile your source code
+2.  To use the API, you will need to obtain an API key from the Alpha Vantage website [here](https://www.alphavantage.co/).
+
+2.  To protect your API key, create a file named .env in the root directory of the project and add the following line:
 
 ```
-javac Main.java
+ALPHA_VANTAGE_API_KEY=your_api_key_here
 ```
+Make sure to replace your_api_key_here with your actual API key.
 
-3. Run the simulation
+4. Run the code!
 
-```
-java Main
-```
+5. Enjoy Trading!
 
 
 Usage
@@ -37,24 +41,11 @@ The simulation starts with a default amount of cash and allows you to buy and se
 
 Future updates
 --------------
-- Real-time stock prices
 - Implementing more technical indicators
 - Implementing stop loss and take profit orders
 - Adding more stocks
 
-Contributing
---------------------
-We welcome contributions to the project. If you are interested in contributing, please follow these guidelines:
 
-- Fork the repository
-- Create a new branch for your changes
-- Make your changes and write clear and concise commit messages
-- Submit a pull request for review
-
-
-Enjoy trading!
-
-This is a challenge from "The Complete Java Development Bootcamp" course in Udemy Its purpose is to write high quality java code.
 
 SCREENSHOT 
 ---------------------- 
