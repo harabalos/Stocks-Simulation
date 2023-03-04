@@ -17,10 +17,10 @@ public abstract class Account {
     public Account(double funds) {        
         this.funds = funds;
         this.portfolio = new HashMap<Stock, Integer>();
-        this.portfolio.put(Stock.aapl, 0);
-        this.portfolio.put(Stock.fb, 0);
-        this.portfolio.put(Stock.goog, 0);
-        this.portfolio.put(Stock.tsla, 0);
+        this.portfolio.put(Stock.AAPL, 0);
+        this.portfolio.put(Stock.META, 0);
+        this.portfolio.put(Stock.GOOG, 0);
+        this.portfolio.put(Stock.TSLA, 0);
     }
 
     public Account(Account source) {

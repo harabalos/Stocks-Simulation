@@ -5,6 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths; 
 import java.util.Scanner;
+import java.net.*;
+import java.io.*;
+import org.json.JSONObject;
+
 
 
 import main.model.Trade;
@@ -18,8 +22,12 @@ import main.utils.Color;
 public class Main {
 
     static Account account; 
-    static final double INITIAL_DEPOSIT = 4000;
+    static final double INITIAL_DEPOSIT = 10000;
     static Scanner scanner = new Scanner(System.in);
+    static String AAPL = getStock("AAPL");
+    static String META = getStock("META");
+    static String GOOG = getStock("GOOG");
+    static String TSLA = getStock("TSLA");
 
     public static void main(String[] args) {
         explainApp();
@@ -30,8 +38,8 @@ public class Main {
             case "B": account = new TFSA(INITIAL_DEPOSIT); break;
         }
 
-        initialBalance();
 
+        initialBalance();
         for (int day = 1; day <= 2160; day++) {
 
             displayPrices(day);
@@ -41,9 +49,9 @@ public class Main {
             int shares = numShares(choice);
         
             String result = account.makeTrade(new Trade(
-                Stock.valueOf(stock),
+                Stock.valueOf(stock.toUpperCase()),
                 choice.equals("buy") ? Type.MARKET_BUY : Type.MARKET_SELL,
-                Double.parseDouble(getPrice(Stock.valueOf(stock), day)),
+                Double.parseDouble(getPrice(Stock.valueOf(stock.toUpperCase()), day)),
                 shares
             )) ? "successful" : "unsuccessful";
 
@@ -79,13 +87,27 @@ public class Main {
         return choice;
     }
 
+    
     public static String getPrice(Stock stock, int day) {
         Path path = getPath(stock.toString());
+        final String st;
+        if(stock.toString().equals("AAPL")){
+            st = Main.AAPL;
+        }else if(stock.toString().equals("META")){
+            st = Main.META;
+        }else if(stock.toString().equals("GOOG")){
+            st = Main.GOOG;
+        }else if(stock.toString().equals("TSLA")){
+            st = Main.TSLA;
+        }else{return null;}
         try {
            return Files.lines(path)
             .skip(1)
             .filter((line) -> Integer.valueOf(line.split(",")[0]) == day)
-            .map((line) -> line.split(",")[1])
+            .map((line) -> {
+                Double k = Double.parseDouble(line.split(",")[1]) + Double.parseDouble(st);
+                return Double.toString(k);
+            })
             .findFirst()
             .orElse(null);
         } catch (IOException e) {
@@ -116,7 +138,7 @@ public class Main {
     public static String chooseStock() {
         System.out.print("  Choose a stock: ");
         String stock = scanner.nextLine().toLowerCase(); 
-        while (!stock.equals("aapl") && !stock.equals("fb") && !stock.equals("goog") && !stock.equals("tsla") ) {
+        while (!stock.equals("aapl") && !stock.equals("meta") && !stock.equals("goog") && !stock.equals("tsla") ) {
             System.out.print("  Choose a stock: ");
             stock = scanner.nextLine();
         }
@@ -139,10 +161,10 @@ public class Main {
     public static void displayPrices(int day) {
         System.out.println("\n\n\t  DAY " + day + " PRICES\n");
 
-        System.out.println("  " + Color.BLUE + "AAPL\t\t" + Color.GREEN + getPrice(Stock.aapl, day));
-        System.out.println("  " + Color.BLUE + "FB\t\t" + Color.GREEN + getPrice(Stock.fb, day));
-        System.out.println("  " + Color.BLUE + "GOOG\t\t" + Color.GREEN + getPrice(Stock.goog, day));
-        System.out.println("  " + Color.BLUE + "TSLA\t\t" + Color.GREEN + getPrice(Stock.tsla, day) + Color.RESET);
+        System.out.println("  " + Color.BLUE + "AAPL\t\t" + Color.GREEN + getPrice(Stock.AAPL, day));
+        System.out.println("  " + Color.BLUE + "META\t\t" + Color.GREEN + getPrice(Stock.META, day));
+        System.out.println("  " + Color.BLUE + "GOOG\t\t" + Color.GREEN + getPrice(Stock.GOOG, day));
+        System.out.println("  " + Color.BLUE + "TSLA\t\t" + Color.GREEN + getPrice(Stock.TSLA, day) + Color.RESET);
 
     }
 
@@ -151,6 +173,41 @@ public class Main {
         System.out.println(account);
         System.out.print("\n  Press anything to continue");
         scanner.nextLine();
+    }
+
+
+    public static String getStock(String symbol){
+        {
+            String apiKey = System.getenv("API_KEY");
+            String urlString = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=" + apiKey;
+            try {
+            URL url = new URL(urlString);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            
+                con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", "Mozilla/5.0");
+    
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            
+            in.close();
+    
+            // Parse the JSON response
+            JSONObject jsonObj = new JSONObject(response.toString());
+            JSONObject globalQuote = jsonObj.getJSONObject("Global Quote");
+            String price = globalQuote.getString("05. price");
+            return price;
+        } catch (IOException e) {
+
+            e.printStackTrace();
+            return "";
+        }
+        
+        }
     }
 
 }
